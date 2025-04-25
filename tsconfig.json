@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "module": "CommonJS",
+    "lib": ["ES2022", "ESNext.Disposable"],
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "outDir": "dist",
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "paths": {
+      "@shared/*": ["./packages/*"]
+    }
+  },
+  "include": ["services/**/*", "packages/**/index.ts"]
+}
