@@ -1,0 +1,7 @@
+{
+  "name": "terraform-monorepo",
+  "version": "1.0.0",
+  "description": "This is an example of services with Terraform in a monorepo",
+  "author": "Leonardo Santos <leonardojdossantos@gmail.com>",
+  "license": "MIT"
+}
