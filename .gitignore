@@ -4,6 +4,9 @@
 # node
 node_modules
 
+# env
+.env
+
 # terraform
 terraform.tfstate
 terraform.tfstate.backup

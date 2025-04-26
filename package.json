@@ -5,9 +5,14 @@
   "author": "Leonardo Santos <leonardojdossantos@gmail.com>",
   "private": true,
   "license": "MIT",
+  "scripts": {
+    "tf:init": "tsx scripts/tf-init.ts",
+    "tf:apply": "tsx scripts/tf-apply.ts"
+  },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.149",
     "@types/node": "^22.15.2",
+    "dotenv": "^16.5.0",
     "esbuild-loader": "^4.3.0",
     "fork-ts-checker-webpack-plugin": "^9.1.0",
     "tsconfig-paths-webpack-plugin": "^4.2.0",
