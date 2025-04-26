@@ -128,3 +128,14 @@ module "second_service_api_gateway" {
     Terraform   = "true"
   }
 }
+
+output "first_service_api_gateway_endpoint" {
+  description = "First Service API Gateway endpoint"
+  value       = module.first_service_api_gateway.api_endpoint
+}
+
+
+output "second_service_api_gateway_endpoint" {
+  description = "Second Service API Gateway endpoint"
+  value       = module.second_service_api_gateway.api_endpoint
+}
