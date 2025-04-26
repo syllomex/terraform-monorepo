@@ -1,0 +1,45 @@
+name: Deploy with Terraform
+
+on:
+  push:
+    branches: ['main']
+  pull_request:
+    branches: ['main']
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+
+      - name: Setup AWS credentials
+        run: |
+          mkdir -p ~/.aws
+          echo "[default]" > ~/.aws/credentials
+          echo "aws_access_key_id = ${{ secrets.AWS_ACCESS_KEY_ID }}" >> ~/.aws/credentials
+          echo "aws_secret_access_key = ${{ secrets.AWS_SECRET_ACCESS_KEY }}" >> ~/.aws/credentials
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npx webpack
+
+      - name: Terraform init
+        run: |
+          terraform init \
+          -backend-config="bucket=${{ vars.TF_BACKEND_BUCKET }}" \
+          -backend-config="key=${{ vars.TF_BACKEND_KEY }}" \
+          -backend-config="region=${{ vars.TF_BACKEND_REGION }}"
+
+      - name: Terraform plan
+        run: terraform plan -out=tfplan
+
+      - name: Terraform apply
+        run: terraform apply -auto-approve tfplan
